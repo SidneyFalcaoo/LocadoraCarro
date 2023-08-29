@@ -2,7 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 
-import ClienteController from '../src/Controller/ClienteController.js'
+import ClienteController from './Controller/ClienteController.js'
 
 let servidor = express();
 servidor.use(cors());
