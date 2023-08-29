@@ -1,0 +1,36 @@
+.comp-cabecalho{
+    display: flex;
+
+    height: 100vh;
+    width: 30vh;
+
+    background-color: black;
+
+    flex-direction: column;
+    align-items: center;
+
+    nav{
+      display: flex;
+      
+      flex-direction: column;
+
+        img{
+            width: 79.55px;
+            height: 86.79px;
+
+            margin-top: 20px;
+        }
+
+        h1{
+            display: flex;
+            color: white;
+            
+            font-size: 18px;
+        }
+
+        strong{
+            
+        }
+    }
+
+}
