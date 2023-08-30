@@ -11,15 +11,18 @@ export default function Home() {
     const [MarcaVeiculo, setMarcaVeiculo] = useState(' ');
     const [AnoVeiculo, setAnoVeiculo] = useState(' ');
     const [PlacaVeiculo, setPlacaVeiculo] = useState(' ');
+    const [Veiculos, setVeiculos] = useState ([]);
 
     function adicionarVeiculo(){
-        let veiculo = {
+        let Veiculo = {
             tipo: TipoVeiculo,
             modelo: ModeloVeiculo,
             marca: MarcaVeiculo,
             ano: AnoVeiculo,
             placa: PlacaVeiculo
         }
+
+        setVeiculos([Veiculo])
     }
 
     return(
@@ -38,13 +41,15 @@ export default function Home() {
                     <h1>Novo veículo</h1>
 
                     <input type='text' value={TipoVeiculo} onChange={e => setTipoVeiculo(e.target.value)}></input>
-                    <input type='text'></input>
-                    <input type='text'></input>
-                    <input type='text'></input>
-                    <input type='text'></input>
+                    <input type='text' value={ModeloVeiculo} onChange={e => setModeloVeiculo(e.target.value)}></input>
+                    <input type='text' value={MarcaVeiculo} onChange={e => setMarcaVeiculo(e.target.value)}></input>
+                    <input type='text' value={AnoVeiculo} onChange={e => setAnoVeiculo(e.target.value)}></input>
+                    <input type='text' value={PlacaVeiculo} onChange={e => setPlacaVeiculo(e.target.value)}></input>
 
-                    <button className='salve'>Salvar</button>
+                    <button className='salve' onClick={adicionarVeiculo}>Salvar</button>
                 </section>
+
+        
             </main>
         </div>
     )
