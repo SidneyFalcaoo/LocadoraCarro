@@ -40,16 +40,22 @@ export default function Home() {
                 <section className='s2'>
                     <h1>Novo veículo</h1>
 
-                    <input type='text' value={TipoVeiculo} onChange={e => setTipoVeiculo(e.target.value)}></input>
-                    <input type='text' value={ModeloVeiculo} onChange={e => setModeloVeiculo(e.target.value)}></input>
-                    <input type='text' value={MarcaVeiculo} onChange={e => setMarcaVeiculo(e.target.value)}></input>
-                    <input type='text' value={AnoVeiculo} onChange={e => setAnoVeiculo(e.target.value)}></input>
-                    <input type='text' value={PlacaVeiculo} onChange={e => setPlacaVeiculo(e.target.value)}></input>
+                    <input type='text' placeholder='Tipo' value={TipoVeiculo} onChange={e => setTipoVeiculo(e.target.value)}/>
+                    <input type='text' placeholder='Modelo' value={ModeloVeiculo} onChange={e => setModeloVeiculo(e.target.value)}/>
+                    <input type='text' placeholder='Marca' value={MarcaVeiculo} onChange={e => setMarcaVeiculo(e.target.value)}/>
+                    <input type='text' placeholder='Ano' value={AnoVeiculo} onChange={e => setAnoVeiculo(e.target.value)}/>
+                    <input type='text' placeholder='Placa' value={PlacaVeiculo} onChange={e => setPlacaVeiculo(e.target.value)}/>
 
                     <button className='salve' onClick={adicionarVeiculo}>Salvar</button>
                 </section>
 
-        
+                <section className='s3'>
+                    <h1>Lista de Veículos</h1>
+
+                    <table>
+
+                    </table>
+                </section>
             </main>
         </div>
     )
