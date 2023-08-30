@@ -6,9 +6,26 @@ const endPoints = Router();
 endPoints.post('/cliente', async (req, resp) => {
     try {
         let cliente = req.body;
-        let r = await inserir(cliente);
 
-        resp.send(r);
+        if (!cliente.nome) 
+            throw new Error('Nome Obrigatório');
+
+        if (!cliente.cpf || isNaN(cliente.cpf))
+            throw new Error ('cpf deve ser um numero');
+
+
+        
+        let Resposta1 = await consultar(cliente.nome);
+        if (Resposta1.length == 0)
+        throw new Error('Tipo invalido')
+
+        let Resposta2 = await consultar(cliente.cpf || cliente.telefone || cliente.email || cliente.cnh) 
+        if (Resposta2.length > 0)
+        throw new Error('Dados já cadastrados! ');
+
+        let Resposta = await inserir(cliente);
+        resp.send(Resposta);
+        
     }
     catch (err) {
         resp.status(500).send({ erro: err.message });
