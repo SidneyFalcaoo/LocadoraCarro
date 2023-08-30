@@ -14,6 +14,5 @@ servidor.use(VeiculoController);
 servidor.use(ClienteController);
 
 
-servidor.listen(process.env.PORT,
-                () => console.log('API SUBIUUUUU!'));
+servidor.listen(process.env.PORT,() => console.log('Api Subiu!'));
                 
