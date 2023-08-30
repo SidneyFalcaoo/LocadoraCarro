@@ -1,53 +1,52 @@
-import { inserir, listarTipos, consultar,  } from "../Repository/ClienteRepository";
+import { inserir, consultar, alterar, deletar } from "../Repository/VeiculoRepository.js";
+
 import { Router } from "express";
+const endPoints = Router();
 
-let endpoints = Router();
+endPoints.post('/veiculo', async (req, resp) => {
+    try {
+        const carroInserir = req.body;
+        const carro = await inserir (carroInserir);
 
-
-endpoints.post('/veiculo', async (req, resp) => {
-  try {
-    let veiculo = req.body;
-
-    if (!veiculo.modelo)
-      throw new Error('Modelo obrigatório');
-
-    if (!veiculo.ano || isNaN(veiculo.ano))
-      throw new Error('Ano deve ser um número');
-    
-    let r1 = await consultar(veiculo.placa);
-    if (r1.length > 0)
-      throw new Error('Placa já cadastrada!');
-
-    
-    let r2 = await buscarTipoPorId(veiculo.idTipoVeiculo);
-    if (r2.length == 0)
-      throw new Error('Tipo inválido');
-
-
-    let r = await inserir(veiculo);
-    resp.send(r);
-  }
-  catch (err) {
-    resp.status(500).send({ erro: err.message });
-  }
-  
-
-})
-
-
-endpoints.get('/veiculo/tipo', async (req, resp) => {
-    let veiculo = req.query;
-  let r = await listarTipos(veiculo);
-  resp.send(r);
+        resp.send(carro);
+    } catch (err) {
+        resp.status(500).send({ erro: 'Ocorreu um erro!' });
+    } 
 });
 
+endPoints.get('/veiculo/busca', async (req, resp) => {
+    try {
+        let modelo = req.query.modelo;
+        let x = await consultar (modelo);
 
+        resp.send(x);
+    } catch (err) {
+        resp.status(500).send({ erro: 'Ocorreu um erro!' });
+    }
+});
 
-endpoints.get('/veiculo', async (req, resp) => {
-  let busca = req.query.busca ?? '';
-  let r = await consultar(busca)
-  resp.send(r);
+endPoints.put('/veiculo/:id', async (req, resp) => {
+    try {
+
+        let id = req.params.id;
+        let carro = req.body;
+
+        let resposta = await alterar(id, carro);
+        resp.send();
+    } catch (err) {
+        resp.status(500).send({ erro: 'Ocorreu um erro!' });
+    }
+});
+
+endPoints.delete('/veiculo/:id', async (req, resp) => {
+    try {
+        let id = req.params.id;
+        let x = await deletar(id);
+
+        resp.send();
+    }  catch (err) {
+        resp.status(500).send({ erro: 'Ocorreu um erro!' });
+    }
 })
 
-
-export default endpoints;
+export default endPoints;

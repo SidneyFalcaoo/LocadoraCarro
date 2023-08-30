@@ -2,15 +2,16 @@ import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 
-import veiculoController from './Controller/VeiculoController.js';
-import clienteController from './controller/clienteController.js'
+import VeiculoController from './Controller/VeiculoController.js';
+import ClienteController from './Controller/ClienteController.js';
+
 
 let servidor = express();
 servidor.use(cors());
 servidor.use(express.json());
 
-servidor.use(veiculoController);
-servidor.use(clienteController);
+servidor.use(VeiculoController);
+servidor.use(ClienteController);
 
 
 servidor.listen(process.env.PORT,
