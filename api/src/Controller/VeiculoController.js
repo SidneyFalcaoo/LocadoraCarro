@@ -5,10 +5,28 @@ const endPoints = Router();
 
 endPoints.post('/veiculo', async (req, resp) => {
     try {
-        const carroInserir = req.body;
-        const carro = await inserir (carroInserir);
+        let veiculo = req.body;
 
-        resp.send(carro);
+        if (!veiculo.modelo)
+        throw new Error('Modelo obrigatório');
+  
+      if (!veiculo.ano || isNaN(veiculo.ano))
+        throw new Error('Ano deve ser um número')
+  
+      
+      
+      let r1 = await consultar(veiculo.placa);
+      if (r1.length > 0)
+        throw new Error('Placa já cadastrada!');
+  
+      
+      let r2 = await buscarTipoPorId(veiculo.idTipoVeiculo);
+      if (r2.length == 0)
+        throw new Error('Tipo inválido');
+  
+        let Resposta = await inserir(veiculo);
+        resp.send(Resposta);
+        
     } catch (err) {
         resp.status(500).send({ erro: 'Ocorreu um erro!' });
     } 
