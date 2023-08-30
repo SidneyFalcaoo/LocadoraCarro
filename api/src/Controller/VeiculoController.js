@@ -67,4 +67,17 @@ endPoints.delete('/veiculo/:id', async (req, resp) => {
     }
 })
 
+endPoints.get('/veiculo/tipo', async (req, resp) => {
+    let r = await listarTipos();
+    resp.send(r);
+});
+  
+  
+  
+endPoints.get('/veiculo', async (req, resp) => {
+    let busca = req.query.busca ?? '';
+    let r = await consultar(busca)
+    resp.send(r);
+})
+
 export default endPoints;
