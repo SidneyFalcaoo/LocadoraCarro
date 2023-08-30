@@ -2,7 +2,7 @@ import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 
-import veiculoController from './controller/veiculoController.js';
+import veiculoController from './Controller/VeiculoController.js';
 import clienteController from './controller/clienteController.js'
 
 let servidor = express();
