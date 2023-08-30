@@ -36,10 +36,15 @@
         background-color: white;
 
         align-self: center;
+        flex-direction: column;
 
         h1{
             padding: 40px;
             font-family: "fonte1";
+        }
+
+        input{
+            width: 50px;
         }
     }
 }
