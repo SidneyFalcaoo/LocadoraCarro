@@ -1,4 +1,4 @@
-import { inserir, consultar, alterar, deletar } from "../Repository/VeiculoRepository.js";
+import { Inserir, consultar, alterar, deletar } from "../Repository/VeiculoRepository.js";
 
 import { Router } from "express";
 const endPoints = Router();
@@ -12,19 +12,16 @@ endPoints.post('/veiculo', async (req, resp) => {
   
       if (!veiculo.ano || isNaN(veiculo.ano))
         throw new Error('Ano deve ser um número')
-  
-      
       
       let r1 = await consultar(veiculo.placa);
       if (r1.length > 0)
         throw new Error('Placa já cadastrada!');
-  
       
       let r2 = await buscarTipoPorId(veiculo.idTipoVeiculo);
       if (r2.length == 0)
         throw new Error('Tipo inválido');
   
-        let Resposta = await inserir(veiculo);
+        let Resposta = await Inserir(veiculo);
         resp.send(Resposta);
         
     } catch (err) {
@@ -50,7 +47,7 @@ endPoints.put('/veiculo/:id', async (req, resp) => {
         let carro = req.body;
 
         let resposta = await alterar(id, carro);
-        resp.send();
+        resp.send(resposta);
     } catch (err) {
         resp.status(500).send({ erro: 'Ocorreu um erro!' });
     }
@@ -61,11 +58,11 @@ endPoints.delete('/veiculo/:id', async (req, resp) => {
         let id = req.params.id;
         let x = await deletar(id);
 
-        resp.send();
+        resp.send(x);
     }  catch (err) {
         resp.status(500).send({ erro: 'Ocorreu um erro!' });
     }
-})
+});
 
 endPoints.get('/veiculo/tipo', async (req, resp) => {
     let r = await listarTipos();
