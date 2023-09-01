@@ -1,6 +1,5 @@
 import conexao from "./Connection.js";
 
-
 export async function inserir(cliente) {
   let comando = `
       insert into tb_cliente (nm_cliente, ds_cpf, ds_telefone, ds_email, ds_cnh)
@@ -35,8 +34,6 @@ export async  function consultar(nome) {
   let [dados] = await conexao.query(comando, ['%' + nome + '%'])
   return dados;
 }
-
-
 
 export async function alterar(id, cliente) {
   let comando = `

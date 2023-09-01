@@ -1,6 +1,5 @@
 import conexao from "./Connection.js"
 
-
 export async function inserir(veiculo) {
   let comando = `
       insert into tb_veiculo (id_tipo_veiculo, ds_modelo, ds_marca, nr_ano, ds_placa) 
@@ -19,7 +18,6 @@ export async function inserir(veiculo) {
   veiculo.id = resp.insertId;
   return veiculo;
 }
-
 
 export async function consultar(busca) {
   let comando = `
@@ -48,7 +46,6 @@ export async function consultar(busca) {
   return dados;
 }
 
-
 export async function alterar(id, veiculo) {
   let comando = `
       update tb_veiculo 
@@ -73,8 +70,6 @@ export async function alterar(id, veiculo) {
   return resp.affectedRows;
 }
 
-
-
 export async function deletar(id) {
   let comando = `
       delete from tb_veiculo 
@@ -84,5 +79,3 @@ export async function deletar(id) {
   let [resp] = await conexao.query(comando, [id]);
   return resp.affectedRows;
 }
-
-

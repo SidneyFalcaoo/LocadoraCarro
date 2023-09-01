@@ -7,7 +7,6 @@ export async function buscarTipoPorId(id) {
   return dados;
 }
 
-
 export async function listarTipos() {
   let comando = `
       select id_tipo_veiculo      id,

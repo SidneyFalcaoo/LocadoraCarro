@@ -7,6 +7,5 @@ let conexao = await mysql2.createConnection ({
   password: process.env.PWD,
 });
 
-
 console.log('Conexão com BD realizada =D');
 export default conexao;
